@@ -47,18 +47,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var currentHour = dayjs().get('hour');
   var timeBlocks = document.querySelectorAll('.time-block');
-  for (var j = 0; j < timeBlocks.length; j++) {
-    var timeBlockId = parseInt(timeBlocks[j].getAttribute('id'));
+  for (var t = 0; t < timeBlocks.length; t++) {
+    var timeBlockId = parseInt(timeBlocks[t].getAttribute('id'));
 
     if (timeBlockId < currentHour) {
-      timeBlocks[j].classList.add('past');
+      timeBlocks[t].classList.add('past');
     } else if (timeBlockId === currentHour) {
-      timeBlocks[j].classList.add('present');
+      timeBlocks[t].classList.add('present');
     } else {
-      timeBlocks[j].classList.add('future');
+      timeBlocks[t].classList.add('future');
     }
 
     var savedUserInput = localStorage.getItem(timeBlockId);
-    timeBlocks[j].querySelector('.description').value = savedUserInput;
+    timeBlocks[t].querySelector('.description').value = savedUserInput;
   }
 });
