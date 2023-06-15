@@ -31,34 +31,3 @@ $(document).ready(function () {
   });
 });
 
-
-
-document.addEventListener('DOMContentLoaded', function () {
-  var saveButtons = document.querySelectorAll('.saveBtn');
-  for (var i = 0; i < saveButtons.length; i++) {
-    saveButtons[i].addEventListener('click', function () {
-      var timeBlock = this.closest('.time-block');
-      var timeBlockId = timeBlock.getAttribute('id');
-      var userInput = timeBlock.querySelector('.description').value;
-
-      localStorage.setItem(timeBlockId, userInput);
-    });
-  }
-
-  var currentHour = dayjs().get('hour');
-  var timeBlocks = document.querySelectorAll('.time-block');
-  for (var t = 0; t < timeBlocks.length; t++) {
-    var timeBlockId = parseInt(timeBlocks[t].getAttribute('id'));
-
-    if (timeBlockId < currentHour) {
-      timeBlocks[t].classList.add('past');
-    } else if (timeBlockId === currentHour) {
-      timeBlocks[t].classList.add('present');
-    } else {
-      timeBlocks[t].classList.add('future');
-    }
-
-    var savedUserInput = localStorage.getItem(timeBlockId);
-    timeBlocks[t].querySelector('.description').value = savedUserInput;
-  }
-});
